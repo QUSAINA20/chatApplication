@@ -24,8 +24,8 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        if ($request->token) {
-            $user->update(['fcm_token' => $request->token]);
+        if ($request->fcm_token) {
+            $user->update(['fcm_token' => $request->fcm_token]);
         }
         event(new Registered($user));
         $accessToken = $user->createToken('authToken')->accessToken;
